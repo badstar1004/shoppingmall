@@ -12,12 +12,28 @@
   <!-- Handles HTTP GET requests for /resources/ by efficiently serving up static resources in the ${webappRoot}/resources directory -->
   <resources mapping="/resources/**" location="/resources/"/>
 
-  <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-  <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <beans:property name="prefix" value="/WEB-INF/views/" />
-    <beans:property name="suffix" value=".jsp" />
+  <!-- tiles -->
+  <!-- tiles 세팅 우선순위 1순위 기존 viewResolver 2순위-->
+  <!-- jsp 파일을 불러올 시 tiles 우선 -->
+  <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <beans:property name="definitions">
+      <beans:list>
+        <beans:value>/WEB-INF/tiles/tiles-def.xml</beans:value>
+      </beans:list>
+    </beans:property>
+  </beans:bean>
+  <beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+    <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+    <beans:property name="order" value="1"/>
   </beans:bean>
 
-  <context:component-scan base-package="org.example.shoppingmall" />
+  <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+  <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <beans:property name="prefix" value="/WEB-INF/views/"/>
+    <beans:property name="suffix" value=".jsp"/>
+    <beans:property name="order" value="2"/>
+  </beans:bean>
+
+  <context:component-scan base-package="org.example.shoppingmall"/>
 
 </beans:beans>

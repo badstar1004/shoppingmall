@@ -2,17 +2,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+  xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
   <context:property-placeholder location="classpath:application.properties"/>
 
   <!-- DataSource 설정 -->
-  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-    <property name="url" value="${MYSQL.URL}"/>
+    <property name="jdbcUrl" value="${MYSQL.URL}"/>
     <property name="username" value="${MYSQL.USERNAME}"/>
     <property name="password" value="${MYSQL.PASSWORD}"/>
   </bean>
 
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="typeAliasesPackage" value="org.example.shoppingmall.model"/>
+    <property name="mapperLocations" value="classpath:/mappers/*.xml"/>
+    <property name="configurationProperties">
+      <props>
+        <prop key="mapUnderscoreToCamelCase">true</prop>
+      </props>
+    </property>
+  </bean>
+  <mybatis-spring:scan base-package="org.example.shoppingmall.mapper"/>
+
+  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg ref="sqlSessionFactory"/>
+  </bean>
+
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
 
 </beans>

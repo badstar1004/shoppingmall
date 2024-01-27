@@ -42,7 +42,7 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="#">로그인</a>
+                            <a href="${pageContext.request.contextPath}/sign-in">로그인</a>
                             <a href="#">회원가입</a>
                         </div>
                         <ul class="header__right__widget">

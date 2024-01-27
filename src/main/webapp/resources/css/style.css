@@ -34,7 +34,7 @@
 html,
 body {
 	height: 100%;
-	font-family: "Montserrat", sans-serif;
+	font-family: "Single Day", cursive;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -47,7 +47,7 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: "Montserrat", sans-serif;
+	font-family: "Single Day", cursive;
 }
 
 h1 {
@@ -76,7 +76,7 @@ h6 {
 
 p {
 	font-size: 14px;
-	font-family: "Montserrat", sans-serif;
+	font-family: "Single Day", cursive;
 	color: #666666;
 	font-weight: 400;
 	line-height: 24px;
@@ -520,7 +520,7 @@ ol {
 .banner__text h1 {
 	font-size: 80px;
 	color: #111111;
-	font-family: "Cookie", cursive;
+	font-family: "Single Day", cursive;
 	margin-bottom: 15px;
 }
 
@@ -703,7 +703,7 @@ ol {
 .discount__text__title h2 {
 	font-size: 60px;
 	color: #ca1515;
-	font-family: "Cookie", cursive;
+	font-family: "Single Day", cursive;
 	line-height: 46px;
 	margin-bottom: 10px;
 }
@@ -1068,7 +1068,7 @@ ol {
 }
 
 .categories__text h1 {
-	font-family: "Cookie", cursive;
+	font-family: "Single Day", cursive;
 	color: #111111;
 	margin-bottom: 5px;
 }

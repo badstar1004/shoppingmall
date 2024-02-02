@@ -19,6 +19,9 @@
     - tilesLayout를 상속
      즉, tilesLayout부분만 설정한 경로대로 갈아 끼우고, 나머지 header, footer는 tilesLayout의 형식대로 상속받아 오는 것이다.
  -->
+  <definition name="*" extends="tilesLayout">
+    <put-attribute name="body" value="/WEB-INF/views/{1}.jsp"/>
+  </definition>
   <definition name="*/*" extends="tilesLayout">
     <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
   </definition>
@@ -33,6 +36,11 @@
   <!-- 로그인 화면 -->
   <definition name="signin-form" extends="tilesBase">
     <put-attribute name="body" value="/WEB-INF/views/tiles-views/form/signin-form.jsp"/>
+  </definition>
+
+  <!-- 회원가입 화면 -->
+  <definition name="signup-form" extends="tilesBase">
+    <put-attribute name="body" value="/WEB-INF/views/tiles-views/form/signup-form.jsp"/>
   </definition>
 
 </tiles-definitions>

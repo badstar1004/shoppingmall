@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.shoppingmall.mapper.ConsumerMapper">
+
+  <!-- 로그인 시 이메일 체크 조회 -->
+  <select id="findByEmail" resultType="org.example.shoppingmall.domain.consumer.domain.Consumer" parameterType="String">
+    SELECT * FROM consumer WHERE email = #{email} AND delete_flag = 'N'
+  </select>
+
+  <!-- 회원가입 시 이메일 체크 조회  -->
+  <select id="checkEmail" resultType="int" parameterType="String">
+    SELECT EXISTS(SELECT 1 FROM consumer WHERE email = #{email})
+  </select>
+
+  <!-- 회원가입 (INSERT) -->
+  <insert id="membershipRegister" parameterType="org.example.shoppingmall.domain.consumer.model.form.ConsumerRegisterForm">
+    INSERT INTO consumer (email, password, name, phone_number)
+         VALUES (#{email}, #{password}, #{name}, #{phoneNumber})
+  </insert>
+
+</mapper>

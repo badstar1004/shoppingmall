@@ -17,7 +17,7 @@
 
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-    <property name="typeAliasesPackage" value="org.example.shoppingmall.model"/>
+    <property name="typeAliasesPackage" value="org.example.shoppingmall.domain.category.domain.Category;org.example.shoppingmall.domain.consumer.domain.Consumer"/>
     <property name="mapperLocations" value="classpath:/mappers/*.xml"/>
     <property name="configurationProperties">
       <props>
@@ -35,6 +35,6 @@
     <property name="dataSource" ref="dataSource"/>
   </bean>
 
-  <context:component-scan base-package="org.example.shoppingmall.commons.config" />
+  <context:component-scan base-package="org.example.shoppingmall.grobal.config" />
 
 </beans>

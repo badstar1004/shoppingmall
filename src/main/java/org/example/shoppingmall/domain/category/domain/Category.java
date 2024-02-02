@@ -1,4 +1,4 @@
-package org.example.shoppingmall.model;
+package org.example.shoppingmall.domain.category.domain;
 
 import lombok.Builder;
 import lombok.Getter;

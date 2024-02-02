@@ -1,9 +1,9 @@
-package org.example.shoppingmall.service;
+package org.example.shoppingmall.domain.category.service;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.example.shoppingmall.mapper.CategoryMapper;
-import org.example.shoppingmall.model.Category;
+import org.example.shoppingmall.domain.category.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -3148,6 +3148,10 @@ ol {
 	width: 100%;
 }
 
+.radio-spacing label {
+	margin-right: 47px;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1600px) and (max-width: 1900px) {

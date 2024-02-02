@@ -42,8 +42,8 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="${pageContext.request.contextPath}/sign-in">로그인</a>
-                            <a href="#">회원가입</a>
+                            <a href="${pageContext.request.contextPath}/auth/sign-in">로그인</a>
+                            <a href="${pageContext.request.contextPath}/auth/sign-up">회원가입</a>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>

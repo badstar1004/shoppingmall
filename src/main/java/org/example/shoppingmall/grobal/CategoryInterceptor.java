@@ -1,11 +1,11 @@
-package org.example.shoppingmall.commons;
+package org.example.shoppingmall.grobal;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.example.shoppingmall.model.Category;
-import org.example.shoppingmall.service.CategoryService;
+import org.example.shoppingmall.domain.category.domain.Category;
+import org.example.shoppingmall.domain.category.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 @Slf4j
 public class CategoryInterceptor implements HandlerInterceptor {
+
     @Autowired
     private CategoryService categoryService;
-
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

@@ -3,19 +3,19 @@ package org.example.shoppingmall.domain.consumer.controller;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.example.shoppingmall.domain.consumer.domain.Consumer;
 import org.example.shoppingmall.domain.consumer.model.form.CheckEmailForm;
 import org.example.shoppingmall.domain.consumer.model.form.ConsumerLoginForm;
 import org.example.shoppingmall.domain.consumer.model.form.ConsumerRegisterForm;
+import org.example.shoppingmall.domain.consumer.model.sessiondto.SessionDto;
 import org.example.shoppingmall.domain.consumer.service.ConsumerService;
 import org.example.shoppingmall.grobal.exception.business.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,19 +38,19 @@ public class ConsumerController {
      * */
     @PostMapping("/sign/sign-in")
     public String consumerLogin(@Valid @ModelAttribute ConsumerLoginForm consumerLoginForm,
-        BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+        BindingResult result, HttpSession httpSession, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "signin-form";
         }
 
         try {
-            Consumer consumer = consumerService.consumerLogin(consumerLoginForm);
-            model.addAttribute("consumer", consumer);
+            SessionDto sessionDto = consumerService.consumerLogin(consumerLoginForm);
+            httpSession.setAttribute("consumer", sessionDto);
             return "redirect:/";
 
         } catch (BusinessException ex) {
             redirectAttributes.addFlashAttribute("loginError", ex.getMessage());
-            model.addAttribute("consumerLoginForm", consumerLoginForm);
+            redirectAttributes.addFlashAttribute("consumerLoginForm", consumerLoginForm);
             return "redirect:/auth/sign-in";
         }
     }

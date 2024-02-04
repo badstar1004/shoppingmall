@@ -54,5 +54,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>s
 </body>
+<script src="../../../../resources/js/login-validation.js"></script>

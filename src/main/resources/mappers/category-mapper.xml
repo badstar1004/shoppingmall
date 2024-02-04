@@ -4,7 +4,7 @@
 
 <mapper namespace="org.example.shoppingmall.mapper.CategoryMapper">
 
-  <select id="selectCategory" resultType="org.example.shoppingmall.domain.category.domain.Category">
+  <select id="selectCategory" resultType="Category">
     SELECT * FROM category WHERE delete_flag = 'N'
   </select>
 </mapper>

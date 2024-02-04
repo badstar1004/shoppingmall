@@ -10,13 +10,13 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-5">
                     <div class="header__logo">
-                        <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/img/logo2.png" alt="홈"></a>
+                        <a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/logo2.png"/>" alt="홈"></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg5">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/">홈</a></li>
+                            <li><a href="<c:url value="/"/>">홈</a></li>
                             <c:forEach var="category" items="${categories}">
                                 <c:choose>
                                     <c:when test="${category.parentCategoryId == null}">
@@ -42,17 +42,49 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="${pageContext.request.contextPath}/auth/sign-in">로그인</a>
-                            <a href="${pageContext.request.contextPath}/auth/sign-up">회원가입</a>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.consumer}">
+                                    <!-- 세션에 consumer 가 있을 때 표시할 내용 -->
+                                    <a href="#" style="margin-right: 10px">
+                                        <c:out value="${sessionScope.consumer.consumerName}님"/>
+                                    </a>
+                                    <a href="<c:url value="/auth/logout"/>">로그아웃</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <!-- 세션에 consumer 가 없을 때 표시할 내용 -->
+                                    <a href="<c:url value='/auth/sign-in'/>">로그인</a>
+                                    <a href="<c:url value='/auth/sign-up'/>">회원가입</a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.consumer}">
+                                    <li>
+                                        <a href="#"><span class="icon_heart_alt"></span>
+                                            <div class="tip"><c:out value="${sessionScope.consumer.wishCount}"/></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="icon_bag_alt"></span>
+                                            <div class="tip"><c:out value="${sessionScope.consumer.basketCount}"/></div>
+                                        </a>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <a href="#"><span class="icon_heart_alt"></span>
+                                            <div class="tip">0</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="icon_bag_alt"></span>
+                                            <div class="tip">0</div>
+                                        </a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                     </div>
                 </div>

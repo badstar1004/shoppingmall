@@ -74,7 +74,7 @@
                 </div>
 
             </form:form>
-
         </div>
     </div>
 </body>
+<script src="../../../../resources/js/register-validation.js"></script>

@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 import org.example.shoppingmall.domain.consumer.domain.Consumer;
 import org.example.shoppingmall.domain.consumer.model.form.ConsumerRegisterForm;
+import org.example.shoppingmall.domain.consumer.model.sessiondto.SessionDto;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,4 +24,9 @@ public interface ConsumerMapper {
     * 회원가입 등록
     * */
     int membershipRegister(ConsumerRegisterForm consumerRegisterForm);
+
+    /*
+    * 찜 목록 개수, 장바구니 개수 조회
+    * */
+    SessionDto countByWishAndBasket(Long consumerId);
 }

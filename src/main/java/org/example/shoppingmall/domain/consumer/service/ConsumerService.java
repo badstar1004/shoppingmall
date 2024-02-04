@@ -7,6 +7,7 @@ import org.example.shoppingmall.domain.consumer.domain.Consumer;
 import org.example.shoppingmall.domain.consumer.model.form.CheckEmailForm;
 import org.example.shoppingmall.domain.consumer.model.form.ConsumerLoginForm;
 import org.example.shoppingmall.domain.consumer.model.form.ConsumerRegisterForm;
+import org.example.shoppingmall.domain.consumer.model.sessiondto.SessionDto;
 import org.example.shoppingmall.grobal.exception.business.BusinessException;
 import org.example.shoppingmall.mapper.ConsumerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ConsumerService {
     /*
      * 로그인
      * */
-    public Consumer consumerLogin(ConsumerLoginForm consumerLoginForm) {
+    public SessionDto consumerLogin(ConsumerLoginForm consumerLoginForm) {
         try {
             // 회원 조회
             Consumer consumer = consumerMapper.findByEmail(consumerLoginForm.getEmail())
@@ -37,7 +38,8 @@ public class ConsumerService {
                 throw new BusinessException(NOT_FOUND_USER_OR_WRONG_PASSWORD);
             }
 
-            return consumer;
+            // 찜 목록 개수, 장바구니 개수 조회
+            return consumerMapper.countByWishAndBasket(consumer.getConsumerId());
 
         } catch (BusinessException ex) {
             throw ex;

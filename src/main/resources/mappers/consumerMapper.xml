@@ -5,8 +5,24 @@
 <mapper namespace="org.example.shoppingmall.mapper.ConsumerMapper">
 
   <!-- 로그인 시 이메일 체크 조회 -->
-  <select id="findByEmail" resultType="org.example.shoppingmall.domain.consumer.domain.Consumer" parameterType="String">
+  <select id="findByEmail" resultType="Consumer" parameterType="String">
     SELECT * FROM consumer WHERE email = #{email} AND delete_flag = 'N'
+  </select>
+
+  <!-- 찜 목록 개수, 장바구니 개수 조회 -->
+  <select id="countByWishAndBasket" parameterType="Long" resultType="org.example.shoppingmall.domain.consumer.model.sessiondto.SessionDto">
+    SELECT c.consumer_id          AS consumer_id
+         , c.name					        AS consumer_name
+         , COUNT(w.wish_list_id)	AS wish_count
+         , COUNT(b.basket_id)     AS basket_count
+      FROM consumer         c
+ LEFT JOIN wish_list		    w
+        ON c.consumer_id	  = w.consumer_id
+ LEFT JOIN basket		        b
+        ON c.consumer_id	  = b.consumer_id
+     WHERE c.consumer_id    = #{consumerId}
+  GROUP BY consumer_id
+         , consumer_name
   </select>
 
   <!-- 회원가입 시 이메일 체크 조회  -->

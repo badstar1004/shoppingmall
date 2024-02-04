@@ -28,7 +28,7 @@ function validateEmail(input, error) {
     return;
   }
 
-  const mailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  const mailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/i;
   if(!mailPattern.test(inputValue)) {
     error.textContent = "이메일 형식이 아닙니다.";
     return;

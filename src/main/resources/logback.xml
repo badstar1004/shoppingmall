@@ -62,6 +62,9 @@
   <!-- Apache Commons Digester에 대한 로거 설정 -->
   <logger name="org.apache.commons.digester" level="DEBUG"/>
 
+  <!-- Mybatis 로거 설정 -->
+  <logger name="org.mybatis" level="DEBUG"/>
+
   <root level="${LOGS_LEVEL}">
     <appender-ref ref="STDOUT"/>
     <appender-ref ref="FILE"/>

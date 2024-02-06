@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.shoppingmall.mapper.ProductMapper">
+
+  <!-- 상위 카테고리 기준 모든 상품 조회 (페이징) -->
+  <select id="findByMainCategoryId" resultType="Product" >
+    SELECT p.*
+         , pi.image_url
+      FROM product          p
+INNER JOIN product_image	  pi
+        ON p.product_id		  = pi.product_id
+INNER JOIN category         c
+        ON p.category_id	  = c.category_id
+INNER JOIN category		      c2
+        ON c.parent_category_id = c2.category_id
+     WHERE c2.category_id   = #{mainCategoryId}
+  ORDER BY product_id
+     LIMIT #{size} OFFSET #{offset}
+  </select>
+
+  <!-- 하위 카테고리 기준 모든 상품 조회 (페이징) -->
+  <select id="findBySubCategoryId" resultType="Product">
+    SELECT p.*
+         , pi.image_url
+      FROM product          p
+INNER JOIN product_image	  pi
+        ON p.product_id		  = pi.product_id
+     WHERE p.category_id  = #{subCategoryId}
+  ORDER BY p.product_id
+     LIMIT #{size} OFFSET #{offset}
+  </select>
+
+  <!-- 상위 카테고리 기준 모든 상품 조회 COUNT -->
+  <select id="countByMainCategoryId" parameterType="Long">
+    SELECT COUNT(p.product_id)
+      FROM product          p
+INNER JOIN category         c
+        ON p.category_id	  = c.category_id
+INNER JOIN category		      c2
+        ON c.parent_category_id = c2.category_id
+     WHERE c2.category_id   = #{mainCategoryId}
+  ORDER BY product_id
+  </select>
+
+
+  <!-- 하위 카테고리 기준 모든 상품 조회 COUNT -->
+  <select id="countBySubCategoryId" parameterType="Long">
+    SELECT COUNT(product_id)
+    FROM product
+   WHERE category_id    = #{subCategoryId}
+ORDER BY product_id
+  </select>
+
+</mapper>

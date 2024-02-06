@@ -23,12 +23,12 @@
                                         <!-- 상위 카테고리의 영문 이름을 변수에 저장 -->
                                         <c:set var="parentCategoryEnName" value="${category.categoryEnName}" />
                                         <li>
-                                            <a href="/${parentCategoryEnName}">${category.categoryName}</a>
+                                            <a href="<c:url value="/categories?main=${category.categoryId}"/>">${category.categoryName}</a>
                                             <!-- 하위 카테고리 드롭다운 -->
                                             <ul class="dropdown">
                                                 <c:forEach var="subCategory" items="${categories}">
                                                     <c:if test="${subCategory.parentCategoryId == category.categoryId}">
-                                                        <li><a href="/${parentCategoryEnName}/${subCategory.categoryId}">${subCategory.categoryName}</a></li>
+                                                        <li><a href="<c:url value="/categories?main=${category.categoryId}&sub=${subCategory.categoryId}"/>">${subCategory.categoryName}</a></li>
                                                     </c:if>
                                                 </c:forEach>
                                             </ul>

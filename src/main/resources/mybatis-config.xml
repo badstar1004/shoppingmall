@@ -11,11 +11,13 @@
   <typeAliases>
     <typeAlias alias="Category" type="org.example.shoppingmall.domain.category.domain.Category"/>
     <typeAlias alias="Consumer" type="org.example.shoppingmall.domain.consumer.domain.Consumer"/>
+    <typeAlias alias="Product" type="org.example.shoppingmall.domain.product.domain.Product"/>
   </typeAliases>
 
   <mappers>
     <mapper class="org.example.shoppingmall.mapper.CategoryMapper"/>
     <mapper class="org.example.shoppingmall.mapper.ConsumerMapper"/>
+    <mapper class="org.example.shoppingmall.mapper.ProductMapper"/>
   </mappers>
 
 </configuration>

@@ -4,7 +4,19 @@
 
 <mapper namespace="org.example.shoppingmall.mapper.CategoryMapper">
 
+  <!-- 카테고리 조회 -->
   <select id="selectCategory" resultType="Category">
     SELECT * FROM category WHERE delete_flag = 'N'
   </select>
+
+  <!-- 카테고리 ID 기준 조회 -->
+  <select id="findByCategoryId" parameterType="Long" resultType="Category">
+    SELECT * FROM category WHERE category_id = #{categoryId}
+  </select>
+
+  <!-- 하위 카테고리 조회 -->
+  <select id="findBySubCategoryList" parameterType="Long" resultType="Category">
+    SELECT * FROM category WHERE parent_category_id = #{categoryId}
+  </select>
+
 </mapper>

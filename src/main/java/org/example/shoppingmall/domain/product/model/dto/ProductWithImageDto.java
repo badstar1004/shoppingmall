@@ -1,4 +1,4 @@
-package org.example.shoppingmall.domain.product.domain;
+package org.example.shoppingmall.domain.product.model.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class Product {
+public class ProductWithImageDto {
     private Long productId;
     private Long sellerId;
     private Long categoryId;
@@ -21,4 +21,6 @@ public class Product {
     private int delivery;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    private String imageUrl;
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.shoppingmall.mapper.ReviewMapper">
+
+  <!-- 상위 카테고리 기준 모든 상품 조회 (페이징) -->
+  <select id="findByProductId" resultType="org.example.shoppingmall.domain.review.model.dto.ReviewWithConsumerDto" parameterType="Long">
+    SELECT r.*
+         , c.email			    AS consumer_email
+         , c.name			      AS consumer_name
+      FROM review			      r
+INNER JOIN consumer		      c
+        ON r.consumer_id	  = c.consumer_id
+     WHERE r.product_id     = #{productId}
+  </select>
+
+  <!-- 상품 ID 기준 count 조회 -->
+  <select id="countByProductId" parameterType="Long">
+    SELECT COUNT(review_id)
+      FROM review
+     WHERE product_id = #{productId}
+  </select>
+
+</mapper>

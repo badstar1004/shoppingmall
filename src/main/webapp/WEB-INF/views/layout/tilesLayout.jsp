@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/css/icons.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" type="text/css">
 </head>
 <body>
     <tiles:insertAttribute name="header"/>

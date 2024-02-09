@@ -33,4 +33,9 @@ public interface ProductMapper {
     * 하위 카테고리 기준 상품 count
     * */
     int countBySubCategoryId(Long subCategoryId);
+
+    /*
+    * 상품 정보 조회 ( + 상위 카테고리 정보)
+    * */
+    Product findByProductId(Long productId);
 }

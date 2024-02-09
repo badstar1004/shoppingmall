@@ -12,12 +12,20 @@
     <typeAlias alias="Category" type="org.example.shoppingmall.domain.category.domain.Category"/>
     <typeAlias alias="Consumer" type="org.example.shoppingmall.domain.consumer.domain.Consumer"/>
     <typeAlias alias="Product" type="org.example.shoppingmall.domain.product.domain.Product"/>
+    <typeAlias alias="ProductImage" type="org.example.shoppingmall.domain.productImage.domain.ProductImage"/>
+    <typeAlias alias="ProductDescription" type="org.example.shoppingmall.domain.productDescriotion.domain.ProductDescription"/>
+    <typeAlias alias="ProductOption" type="org.example.shoppingmall.domain.productOption.domain.ProductOption"/>
+    <typeAlias alias="Review" type="org.example.shoppingmall.domain.review.domain.Review"/>
   </typeAliases>
 
   <mappers>
     <mapper class="org.example.shoppingmall.mapper.CategoryMapper"/>
     <mapper class="org.example.shoppingmall.mapper.ConsumerMapper"/>
     <mapper class="org.example.shoppingmall.mapper.ProductMapper"/>
+    <mapper class="org.example.shoppingmall.mapper.ProductImageMapper"/>
+    <mapper class="org.example.shoppingmall.mapper.ProductDescriptionMapper"/>
+    <mapper class="org.example.shoppingmall.mapper.ProductOptionMapper"/>
+    <mapper class="org.example.shoppingmall.mapper.ReviewMapper"/>
   </mappers>
 
 </configuration>

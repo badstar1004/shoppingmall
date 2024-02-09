@@ -27,7 +27,7 @@
             <c:if test="${not empty productList}">
                 <c:forEach items="${productList}" var="product">
                     <div class="product-item">
-                        <a href="<c:url value='/products/detail/${product.productId}' />" class="product-link">
+                        <a href="<c:url value='/products/details/${product.productId}' />" class="product-link">
                             <img src="${product.imageUrl}" alt="${product.productName}">
                             <div><c:out value="${product.productName}"/></div>
                             <div><c:out value="${product.price}"/> 원</div>

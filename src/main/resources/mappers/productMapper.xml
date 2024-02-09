@@ -5,12 +5,13 @@
 <mapper namespace="org.example.shoppingmall.mapper.ProductMapper">
 
   <!-- 상위 카테고리 기준 모든 상품 조회 (페이징) -->
-  <select id="findByMainCategoryId" resultType="Product" >
+  <select id="findByMainCategoryId" resultType="org.example.shoppingmall.domain.product.model.dto.ProductWithImageDto" >
     SELECT p.*
          , pi.image_url
       FROM product          p
 INNER JOIN product_image	  pi
         ON p.product_id		  = pi.product_id
+       AND pi.main_image_flag   = 'Y'
 INNER JOIN category         c
         ON p.category_id	  = c.category_id
 INNER JOIN category		      c2
@@ -21,12 +22,13 @@ INNER JOIN category		      c2
   </select>
 
   <!-- 하위 카테고리 기준 모든 상품 조회 (페이징) -->
-  <select id="findBySubCategoryId" resultType="Product">
+  <select id="findBySubCategoryId" resultType="org.example.shoppingmall.domain.product.model.dto.ProductWithImageDto">
     SELECT p.*
          , pi.image_url
       FROM product          p
 INNER JOIN product_image	  pi
         ON p.product_id		  = pi.product_id
+       AND pi.main_image_flag   = 'Y'
      WHERE p.category_id  = #{subCategoryId}
   ORDER BY p.product_id
      LIMIT #{size} OFFSET #{offset}
@@ -44,13 +46,17 @@ INNER JOIN category		      c2
   ORDER BY product_id
   </select>
 
-
   <!-- 하위 카테고리 기준 모든 상품 조회 COUNT -->
   <select id="countBySubCategoryId" parameterType="Long">
     SELECT COUNT(product_id)
     FROM product
    WHERE category_id    = #{subCategoryId}
 ORDER BY product_id
+  </select>
+
+  <!-- 상품 정보 조회 -->
+  <select id="findByProductId" resultType="Product">
+    SELECT * FROM product WHERE product_id = #{productId}
   </select>
 
 </mapper>

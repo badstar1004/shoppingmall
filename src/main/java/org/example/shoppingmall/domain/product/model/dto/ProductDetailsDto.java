@@ -9,13 +9,14 @@ import org.example.shoppingmall.domain.productDescriotion.domain.ProductDescript
 import org.example.shoppingmall.domain.productImage.domain.ProductImage;
 import org.example.shoppingmall.domain.productOption.model.ProductOptionColorDto;
 import org.example.shoppingmall.domain.productOption.model.ProductOptionSizeDto;
+import org.example.shoppingmall.domain.review.model.dto.ReviewCountAvgRatingDto;
 
 @Getter
 @Setter
 @Builder
 public class ProductDetailsDto {
     private Product product;
-    private int reviewCount;
+    private ReviewCountAvgRatingDto countAvgRatingDto;
     private List<ProductImage> productImageList;
     private List<ProductOptionSizeDto> optionSizeDtoList;
     private List<ProductOptionColorDto> optionColorDtoList;

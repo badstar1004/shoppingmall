@@ -9,6 +9,7 @@ import org.example.shoppingmall.domain.productDescriotion.domain.ProductDescript
 import org.example.shoppingmall.domain.productImage.domain.ProductImage;
 import org.example.shoppingmall.domain.productOption.model.ProductOptionColorDto;
 import org.example.shoppingmall.domain.productOption.model.ProductOptionSizeDto;
+import org.example.shoppingmall.domain.review.model.dto.ReviewCountAvgRatingDto;
 import org.example.shoppingmall.mapper.ProductDescriptionMapper;
 import org.example.shoppingmall.mapper.ProductImageMapper;
 import org.example.shoppingmall.mapper.ProductMapper;
@@ -82,11 +83,11 @@ public class ProductService {
             productDescriptionMapper.findByProductId(productId);
 
         // 리뷰 총 count
-        int reviewCount = reviewMapper.countByProductId(productId);
+        ReviewCountAvgRatingDto countAvgRatingDto = reviewMapper.countAndAvgByProductId(productId);
 
         return ProductDetailsDto.builder()
             .product(product)
-            .reviewCount(reviewCount)
+            .countAvgRatingDto(countAvgRatingDto)
             .productImageList(productImage)
             .optionSizeDtoList(optionSizeDtoList)
             .optionColorDtoList(optionColorDtoList)

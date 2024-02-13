@@ -14,15 +14,14 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" type="text/css">
+    <!-- Js Plugins -->
+    <script src="../../../resources/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../resources/js/jquery-ui.min.js"></script>
+    <script src="../../../resources/js/bootstrap.min.js"></script>
 </head>
 <body>
     <tiles:insertAttribute name="header"/>
     <tiles:insertAttribute name="body"/>
     <tiles:insertAttribute name="footer"/>
-
-    <!-- Js Plugins -->
-    <script src="../../../resources/js/jquery-3.3.1.min.js"></script>
-    <script src="../../../resources/js/jquery-ui.min.js"></script>
-    <script src="../../../resources/js/bootstrap.min.js"></script>
 </body>
 </html>

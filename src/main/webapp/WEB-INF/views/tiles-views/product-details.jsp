@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<link rel="stylesheet" type="text/css" href="../../../resources/css/product-details-review-paging.css">
 <body>
     <section class="product-details spad">
         <div class="container">
@@ -40,29 +40,43 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product__details__text">
+                        <input type="hidden" id="productId" name="productId" value="${productDetails.product.productId}">
                         <h3><c:out value="${productDetails.product.productName}"/> </h3>
+                        <div class="product__details__button">
+                            <ul>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            </ul>
+                        </div>
                         <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span>( <c:out value="${productDetails.reviewCount}"/> reviews )</span>
+                            <c:forEach var="i" begin="1" end="5" step="1">
+                                <c:choose>
+                                    <c:when test="${i <= productDetails.countAvgRatingDto.avgRating}">
+                                        <i class="fa fa-star"></i>
+                                    </c:when>
+                                    <c:when test="${i - productDetails.countAvgRatingDto.avgRating < 1}">
+                                        <i class="fa fa-star-half-o"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <i class="fa fa-star-o"></i>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <span>( <c:out value="${productDetails.countAvgRatingDto.reviewCount}"/> reviews )</span>
                         </div>
                         <div class="product__details__price"><c:out value="${productDetails.product.price} 원"/> </div>
                         <div class="product__details__button">
                             <div class="quantity">
                                 <span>Quantity:</span>
                                 <div class="pro-qty">
-                                    <span class="dec qtybtn">-</span>
-                                    <input type="text" value="1">
-                                    <span class="inc qtybtn">+</span></div>
+                                    <span class="dec qtybtn" id="decrement">-</span>
+                                    <input type="text" id="quantity" value="1">
+                                    <span class="inc qtybtn" id="increment">+</span>
+                                </div>
                             </div>
                             <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> 장바구니 추가 </a>
-                            <ul>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-                            </ul>
+                            <div class="checkout__order__widget">
+                                <a href="#" class="checkout__order__widget"><span class="icon_bag_alt"></span> 구매하기 </a>
+                            </div>
                         </div>
                         <div class="product__details__widget">
                             <ul>
@@ -99,12 +113,11 @@
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">상품 상세</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">리뷰 ( <c:out value="${productDetails.reviewCount}"/> )</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">리뷰 ( <c:out value="${productDetails.countAvgRatingDto.reviewCount}"/> )</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <h6>상품 상세 설명</h6>
                                 <c:forEach items="${productDetails.productDescriptionList}" var="details">
                                     <c:if test="${details.contentsType == 'TEXT'}">
                                         <p>${details.contentsValue}</p>
@@ -115,8 +128,7 @@
                                 </c:forEach>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <h6>리뷰 ( <c:out value="${productDetails.reviewCount}"/> )</h6>
-                                <p>리뷰쓰</p>
+
                             </div>
                         </div>
                     </div>
@@ -124,35 +136,6 @@
             </div>
         </div>
     </section>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // 'color__radio' 이름을 가진 모든 라디오 버튼에 대해 반복
-        const colorRadios = document.getElementsByName('color__radio');
-        Array.prototype.forEach.call(colorRadios, function(radio) {
-          // 클릭 이벤트 리스너 추가
-          radio.addEventListener('click', function() {
-            // 클릭된 라디오 버튼을 'checked' 상태로 설정
-            this.checked = true;
-          });
-        });
-
-        // 'size__radio' 이름을 가진 모든 라디오 버튼에 대해 반복
-        const sizeRadios = document.getElementsByName('size__radio');
-        Array.prototype.forEach.call(sizeRadios, function(radio) {
-          // 클릭 이벤트 리스너 추가
-          radio.addEventListener('click', function() {
-            // 클릭된 라디오 버튼을 'checked' 상태로 설정
-            this.checked = true;
-
-            // 모든 라디오 버튼의 레이블에서 'active' 클래스 제거
-            sizeRadios.forEach(function(otherRadio) {
-              otherRadio.parentNode.classList.remove('active');
-            });
-
-            // 클릭된 라디오 버튼의 레이블에 'active' 클래스 추가
-            this.parentNode.classList.add('active');
-        });
-      });
-    });
-    </script>
+    <script type="application/javascript" src="../../../resources/js/product-details-function.js"></script>
+    <script type="application/javascript" src="../../../resources/js/product-details-reviews.js"></script>
 </body>

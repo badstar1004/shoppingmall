@@ -4,22 +4,40 @@
 
 <mapper namespace="org.example.shoppingmall.mapper.ReviewMapper">
 
-  <!-- 상위 카테고리 기준 모든 상품 조회 (페이징) -->
-  <select id="findByProductId" resultType="org.example.shoppingmall.domain.review.model.dto.ReviewWithConsumerDto" parameterType="Long">
-    SELECT r.*
+  <!-- 상품 id 기준 리뷰 페이징 -->
+  <select id="findByProductId" resultType="org.example.shoppingmall.domain.review.model.dto.ReviewWithConsumerDto">
+    SELECT r.review_id
+         , r.consumer_id
+         , po.product_id
+         , r.rating
+         , r.review_text
+         , DATE_FORMAT(r.created_at, '%Y.%m.%d') AS created_at
+         , po.option_size
+         , po.option_color
          , c.email			    AS consumer_email
          , c.name			      AS consumer_name
+         , p.product_name
       FROM review			      r
 INNER JOIN consumer		      c
         ON r.consumer_id	  = c.consumer_id
-     WHERE r.product_id     = #{productId}
+INNER JOIN product_option   po
+        ON r.option_id      = po.option_id
+INNER JOIN product          p
+        ON po.product_id    = p.product_id
+     WHERE po.product_id    = #{productId}
+  ORDER BY created_at DESC
+         , review_id DESC
+     LIMIT #{size} OFFSET #{offset}
   </select>
 
-  <!-- 상품 ID 기준 count 조회 -->
-  <select id="countByProductId" parameterType="Long">
-    SELECT COUNT(review_id)
-      FROM review
-     WHERE product_id = #{productId}
+  <!-- 상품 ID 기준 count, 평점 조회 -->
+  <select id="countAndAvgByProductId" parameterType="Long" resultType="org.example.shoppingmall.domain.review.model.dto.ReviewCountAvgRatingDto">
+    SELECT COUNT(r.review_id)         AS review_count
+         , ROUND(AVG(r.rating), 1)    AS avg_rating
+      FROM review           r
+INNER JOIN product_option   po
+        ON r.option_id      = po.option_id
+     WHERE po.product_id    = #{productId}
   </select>
 
 </mapper>

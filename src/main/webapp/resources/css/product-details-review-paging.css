@@ -1,0 +1,73 @@
+.review {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.consumer-name {
+  flex: 1;
+}
+
+.rating {
+  flex: 1;
+  text-align: center;
+}
+
+.review-date {
+  flex: 1;
+  text-align: right;
+}
+
+.review-options {
+  margin-bottom: 10px;
+}
+
+.option-size, .option-color {
+  font-weight: bold;
+}
+
+.option-size::after {
+  content: " | ";
+}
+
+.option-color::before {
+  content: "";
+}
+
+.review-text {
+  clear: both;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.pagination a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.pagination span {
+  margin: 0 5px;
+}
+
+.pagination a:hover,
+.pagination a:focus {
+  text-decoration: underline;
+}
+
+.pagination span strong {
+  font-weight: bold;
+  font-size: 20px;
+}

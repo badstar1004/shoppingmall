@@ -59,4 +59,9 @@ ORDER BY product_id
     SELECT * FROM product WHERE product_id = #{productId}
   </select>
 
+  <!-- productId 기준 존재 여부 조회 -->
+  <select id="existsById" resultType="int" parameterType="Long">
+    SELECT EXISTS(SELECT 1 FROM product WHERE product_id = #{productId})
+  </select>
+
 </mapper>

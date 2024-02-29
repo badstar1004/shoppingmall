@@ -16,6 +16,7 @@
     <typeAlias alias="ProductDescription" type="org.example.shoppingmall.domain.productDescriotion.domain.ProductDescription"/>
     <typeAlias alias="ProductOption" type="org.example.shoppingmall.domain.productOption.domain.ProductOption"/>
     <typeAlias alias="Review" type="org.example.shoppingmall.domain.review.domain.Review"/>
+    <typeAlias alias="WishList" type="org.example.shoppingmall.domain.wishList.domain.WishList"/>
   </typeAliases>
 
   <mappers>
@@ -26,6 +27,7 @@
     <mapper class="org.example.shoppingmall.mapper.ProductDescriptionMapper"/>
     <mapper class="org.example.shoppingmall.mapper.ProductOptionMapper"/>
     <mapper class="org.example.shoppingmall.mapper.ReviewMapper"/>
+    <mapper class="org.example.shoppingmall.mapper.WishListMapper"/>
   </mappers>
 
 </configuration>

@@ -38,4 +38,9 @@ public interface ProductMapper {
     * 상품 정보 조회 ( + 상위 카테고리 정보)
     * */
     Product findByProductId(Long productId);
+
+    /*
+    * productId 기준 존재 여부 조회
+    * */
+    int existsById(Long productId);
 }

@@ -45,6 +45,7 @@
                             <c:choose>
                                 <c:when test="${not empty sessionScope.consumer}">
                                     <!-- 세션에 consumer 가 있을 때 표시할 내용 -->
+                                    <input type="hidden" id="consumerId" name="consumerId" value="${sessionScope.consumer.consumerId}">
                                     <a href="#" style="margin-right: 10px">
                                         <c:out value="${sessionScope.consumer.consumerName}님"/>
                                     </a>

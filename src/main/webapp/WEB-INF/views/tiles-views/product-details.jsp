@@ -44,7 +44,7 @@
                         <h3><c:out value="${productDetails.product.productName}"/> </h3>
                         <div class="product__details__button">
                             <ul>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#" class="wish-list"><span class="icon_heart"></span></a></li>
                             </ul>
                         </div>
                         <div class="rating">
@@ -73,10 +73,8 @@
                                     <span class="inc qtybtn" id="increment">+</span>
                                 </div>
                             </div>
+                            <a href="#" class="cart-btn"><span class="icon_cart_alt"></span> 구매하기 </a>
                             <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> 장바구니 추가 </a>
-                            <div class="checkout__order__widget">
-                                <a href="#" class="checkout__order__widget"><span class="icon_bag_alt"></span> 구매하기 </a>
-                            </div>
                         </div>
                         <div class="product__details__widget">
                             <ul>

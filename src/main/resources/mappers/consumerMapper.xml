@@ -9,6 +9,11 @@
     SELECT * FROM consumer WHERE email = #{email} AND delete_flag = 'N'
   </select>
 
+  <!-- consumerId 기준 존재 여부 조회 -->
+  <select id="existsById" resultType="int" parameterType="Long">
+    SELECT EXISTS(SELECT 1 FROM consumer WHERE consumer_id = #{consumerId})
+  </select>
+
   <!-- 찜 목록 개수, 장바구니 개수 조회 -->
   <select id="countByWishAndBasket" parameterType="Long" resultType="org.example.shoppingmall.domain.consumer.model.sessiondto.SessionDto">
     SELECT c.consumer_id          AS consumer_id

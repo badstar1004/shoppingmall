@@ -29,4 +29,6 @@ public interface ConsumerMapper {
     * 찜 목록 개수, 장바구니 개수 조회
     * */
     SessionDto countByWishAndBasket(Long consumerId);
+
+    int existsById(Long consumerId);
 }

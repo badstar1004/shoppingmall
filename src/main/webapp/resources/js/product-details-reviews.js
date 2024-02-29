@@ -3,6 +3,9 @@ $(document).ready(function () {
   const productId = $("#productId").val();
   loadReviews(productId, 1, 20); // 페이지 로드 시 리뷰 로딩 실행
 
+  const consumerId = $("#consumerId").val();
+  // 찜목록 추가
+  addWishList(productId, consumerId);
 });
 
 
@@ -84,5 +87,25 @@ function loadReviews(productId, page, size) {
     error: function (error) {
       console.error('Error fetching reviews:', error);
     }
+  });
+}
+
+function addWishList(productId, consumerId) {
+  $(".wish-list").click(function (e) {
+    e.preventDefault();   // 기본 이벤트 방지
+
+    $.ajax({
+      url: `/wish-list/${consumerId}/${productId}`,
+      type: "POST",
+      success: function (response) {
+        // 요청이 성공적으로 완료되었을 때
+        alert("찜 목록에 추가되었습니다.");
+        $this.find(".icon_heart_alt").removeClass("icon_heart_alt").addClass("icon_heart");
+      },
+
+      error: function (error) {
+        alert("찜 목록 추가에 실패했습니다.");
+      }
+    });
   });
 }

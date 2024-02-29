@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
   setupQuantityControls();
 });
 
+/*
+* 색상 radio
+* */
 function setupColorRadios() {
   // 'color__radio' 이름을 가진 모든 라디오 버튼에 대해 반복
   const colorRadios = document.getElementsByName('color__radio');
@@ -14,6 +17,9 @@ function setupColorRadios() {
   });
 }
 
+/*
+* 사이즈 radio
+* */
 function setupSizeRadios() {
   // 'size__radio' 이름을 가진 모든 라디오 버튼에 대해 반복
   const sizeRadios = document.getElementsByName('size__radio');
@@ -51,4 +57,11 @@ function setupQuantityControls() {
     const newValue = currentValue + change;
     quantityInput.value = newValue > 1 ? newValue : 1;
   }
+}
+
+/*
+* 찜 목록
+* */
+function addWishList() {
+
 }
